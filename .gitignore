@@ -1,0 +1,8 @@
+*.sql
+sqlite*
+*sqlite
+
+*.pyc
+*pycache*
+
+/migrations
