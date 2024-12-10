@@ -15,7 +15,8 @@ ENV DJANGO_SUPERUSER_EMAIL=admin@example.com
 ENV DJANGO_SUPERUSER_PASSWORD=adminpassword
 COPY . /app/
 
-RUN python manage.py migrate && python manage.py createsuperuser --noinput || true
+RUN python manage.py migrate && python manage.py createsuperuser --noinput
+RUN python manage.py makemigrations && python manage.py migrate
 
 EXPOSE 8000
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver"]
+CMD ["sh", "-c", "python manage.py createsuperuser --noinput &&  python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
